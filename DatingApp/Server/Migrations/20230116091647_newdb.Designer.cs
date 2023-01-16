@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DatingApp.Server.Data.Migrations
+namespace DatingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230116080001_AddUserSeedConfiguration")]
-    partial class AddUserSeedConfiguration
+    [Migration("20230116091647_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,13 +94,10 @@ namespace DatingApp.Server.Data.Migrations
 
             modelBuilder.Entity("DatingApp.Shared.Domain.Match", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ConversationID")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -126,16 +123,36 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("MatchId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Matches");
+
+                    b.HasData(
+                        new
+                        {
+                            MatchId = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateMatched = new DateTime(2023, 1, 16, 17, 16, 46, 726, DateTimeKind.Local).AddTicks(687),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MatcheeID = 1,
+                            MatcherID = 2
+                        },
+                        new
+                        {
+                            MatchId = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateMatched = new DateTime(2023, 1, 16, 17, 16, 46, 726, DateTimeKind.Local).AddTicks(996),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MatcheeID = 2,
+                            MatcherID = 1
+                        });
                 });
 
             modelBuilder.Entity("DatingApp.Shared.Domain.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -179,30 +196,30 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            UserId = 1,
                             Age = 0,
                             ContactNum = 0,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 16, 0, 0, 665, DateTimeKind.Local).AddTicks(6413),
-                            DateUpdated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(4200),
+                            DateCreated = new DateTime(2023, 1, 16, 17, 16, 46, 724, DateTimeKind.Local).AddTicks(2149),
+                            DateUpdated = new DateTime(2023, 1, 16, 17, 16, 46, 724, DateTimeKind.Local).AddTicks(9875),
                             UpdatedBy = "System",
                             Username = "yifeng123"
                         },
                         new
                         {
-                            Id = 2,
+                            UserId = 2,
                             Age = 0,
                             ContactNum = 0,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(5058),
-                            DateUpdated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(5063),
+                            DateCreated = new DateTime(2023, 1, 16, 17, 16, 46, 725, DateTimeKind.Local).AddTicks(680),
+                            DateUpdated = new DateTime(2023, 1, 16, 17, 16, 46, 725, DateTimeKind.Local).AddTicks(685),
                             UpdatedBy = "System",
                             Username = "jeryl123"
                         });

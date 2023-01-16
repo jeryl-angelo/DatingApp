@@ -15,7 +15,7 @@ namespace DatingApp.Server.Configurations.Entities
             builder.HasData(
                 new User
                 {
-                    Id = 1,
+                    UserId = 1,
                     Username = "yifeng123",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
@@ -27,7 +27,7 @@ namespace DatingApp.Server.Configurations.Entities
 
                 new User
                 {
-                    Id = 2,
+                    UserId = 2,
                     Username = "jeryl123",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,

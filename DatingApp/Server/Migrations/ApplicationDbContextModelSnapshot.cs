@@ -4,16 +4,14 @@ using DatingApp.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DatingApp.Server.Data.Migrations
+namespace DatingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230116074438_AddApplicationTables")]
-    partial class AddApplicationTables
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,15 +92,12 @@ namespace DatingApp.Server.Data.Migrations
 
             modelBuilder.Entity("DatingApp.Shared.Domain.Match", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MatchId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ConversationID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CreaetedBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
@@ -126,16 +121,36 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("MatchId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Matches");
+
+                    b.HasData(
+                        new
+                        {
+                            MatchId = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateMatched = new DateTime(2023, 1, 16, 17, 41, 2, 277, DateTimeKind.Local).AddTicks(2024),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MatcheeID = 1,
+                            MatcherID = 2
+                        },
+                        new
+                        {
+                            MatchId = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateMatched = new DateTime(2023, 1, 16, 17, 41, 2, 277, DateTimeKind.Local).AddTicks(2368),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            MatcheeID = 2,
+                            MatcherID = 1
+                        });
                 });
 
             modelBuilder.Entity("DatingApp.Shared.Domain.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -149,7 +164,7 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<int>("ContactNum")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreaetedBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
@@ -179,9 +194,33 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            Age = 0,
+                            ContactNum = 0,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 16, 17, 41, 2, 275, DateTimeKind.Local).AddTicks(899),
+                            DateUpdated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(18),
+                            UpdatedBy = "System",
+                            Username = "yifeng123"
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            Age = 0,
+                            ContactNum = 0,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(851),
+                            DateUpdated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(856),
+                            UpdatedBy = "System",
+                            Username = "jeryl123"
+                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
