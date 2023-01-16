@@ -4,14 +4,16 @@ using DatingApp.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DatingApp.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230116074438_AddApplicationTables")]
+    partial class AddApplicationTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,7 +102,7 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<int>("ConversationID")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreaetedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
@@ -147,7 +149,7 @@ namespace DatingApp.Server.Data.Migrations
                     b.Property<int>("ContactNum")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("CreaetedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
@@ -180,30 +182,6 @@ namespace DatingApp.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Age = 0,
-                            ContactNum = 0,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 16, 0, 0, 665, DateTimeKind.Local).AddTicks(6413),
-                            DateUpdated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(4200),
-                            UpdatedBy = "System",
-                            Username = "yifeng123"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Age = 0,
-                            ContactNum = 0,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(5058),
-                            DateUpdated = new DateTime(2023, 1, 16, 16, 0, 0, 666, DateTimeKind.Local).AddTicks(5063),
-                            UpdatedBy = "System",
-                            Username = "jeryl123"
-                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
