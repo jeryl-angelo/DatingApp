@@ -132,7 +132,7 @@ namespace DatingApp.Server.Migrations
                         {
                             MatchId = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 16, 17, 41, 2, 277, DateTimeKind.Local).AddTicks(2024),
+                            DateMatched = new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9159),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatcheeID = 1,
                             MatcherID = 2
@@ -141,7 +141,7 @@ namespace DatingApp.Server.Migrations
                         {
                             MatchId = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 16, 17, 41, 2, 277, DateTimeKind.Local).AddTicks(2368),
+                            DateMatched = new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9499),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatcheeID = 2,
                             MatcherID = 1
@@ -205,8 +205,8 @@ namespace DatingApp.Server.Migrations
                             Age = 0,
                             ContactNum = 0,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 17, 41, 2, 275, DateTimeKind.Local).AddTicks(899),
-                            DateUpdated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(18),
+                            DateCreated = new DateTime(2023, 1, 18, 22, 25, 0, 701, DateTimeKind.Local).AddTicks(5162),
+                            DateUpdated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(4807),
                             UpdatedBy = "System",
                             Username = "yifeng123"
                         },
@@ -216,8 +216,8 @@ namespace DatingApp.Server.Migrations
                             Age = 0,
                             ContactNum = 0,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(851),
-                            DateUpdated = new DateTime(2023, 1, 16, 17, 41, 2, 276, DateTimeKind.Local).AddTicks(856),
+                            DateCreated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6153),
+                            DateUpdated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6161),
                             UpdatedBy = "System",
                             Username = "jeryl123"
                         });

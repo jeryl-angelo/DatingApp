@@ -249,8 +249,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "MatchId", "CreatedBy", "DateCreated", "DateMatched", "DateUpdated", "MatcheeID", "MatcherID", "UpdatedBy", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 16, 17, 16, 46, 726, DateTimeKind.Local).AddTicks(687), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, null, null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 16, 17, 16, 46, 726, DateTimeKind.Local).AddTicks(996), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, null, null }
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9159), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, null, null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9499), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -258,8 +258,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "UserId", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
                 values: new object[,]
                 {
-                    { 1, 0, null, 0, "System", new DateTime(2023, 1, 16, 17, 16, 46, 724, DateTimeKind.Local).AddTicks(2149), new DateTime(2023, 1, 16, 17, 16, 46, 724, DateTimeKind.Local).AddTicks(9875), null, null, null, null, null, "System", "yifeng123" },
-                    { 2, 0, null, 0, "System", new DateTime(2023, 1, 16, 17, 16, 46, 725, DateTimeKind.Local).AddTicks(680), new DateTime(2023, 1, 16, 17, 16, 46, 725, DateTimeKind.Local).AddTicks(685), null, null, null, null, null, "System", "jeryl123" }
+                    { 1, 0, null, 0, "System", new DateTime(2023, 1, 18, 22, 25, 0, 701, DateTimeKind.Local).AddTicks(5162), new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(4807), null, null, null, null, null, "System", "yifeng123" },
+                    { 2, 0, null, 0, "System", new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6153), new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6161), null, null, null, null, null, "System", "jeryl123" }
                 });
 
             migrationBuilder.CreateIndex(

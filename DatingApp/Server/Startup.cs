@@ -1,4 +1,6 @@
 using DatingApp.Server.Data;
+using DatingApp.Server.IRepository;
+using DatingApp.Server.Repository;
 using DatingApp.Server.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +39,9 @@ namespace DatingApp.Server
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
