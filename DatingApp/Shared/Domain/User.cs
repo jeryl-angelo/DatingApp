@@ -11,7 +11,7 @@ namespace DatingApp.Shared.Domain
         public int UserId { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public int Age { get; set; }
+        public string Age { get; set; }
         public string Pronouns { get; set; }
         public string Gender { get; set; }
         public string GenderPreference { get; set; }
@@ -21,7 +21,7 @@ namespace DatingApp.Shared.Domain
 
         public string Location { get; set; }
 
-        
+       
 
 
     }

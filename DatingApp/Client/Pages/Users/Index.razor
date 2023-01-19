@@ -21,7 +21,14 @@ else
         <thead>
             <tr>
                 <th>Username</th>
+                <th>Age</th>
+                <th>Pronouns</th>
+                <th>Gender</th>
+                <th>Gender Preference</th>
+                <th>Age Preferenece</th>
+                <th>Location</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -29,6 +36,12 @@ else
             {
                 <tr>
                     <td>@user.Username</td>
+                    <td>@user.Age</td>
+                    <td>@user.Pronouns</td>
+                    <td>@user.Gender</td>
+                    <td>@user.GenderPreference</td>
+                    <td>@user.AgePreference</td>
+                    <td>@user.Location</td>
                     <td>
                         <a href="/users/view/@user.UserId" class="btn btn-primary">
                             <span class="oi oi-book"></span>

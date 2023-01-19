@@ -109,10 +109,10 @@ namespace DatingApp.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MatcheeID")
+                    b.Property<int>("MatcheeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MatcherID")
+                    b.Property<int>("MatcherId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
@@ -132,19 +132,19 @@ namespace DatingApp.Server.Migrations
                         {
                             MatchId = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9159),
+                            DateMatched = new DateTime(2023, 1, 19, 17, 25, 54, 236, DateTimeKind.Local).AddTicks(5188),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatcheeID = 1,
-                            MatcherID = 2
+                            MatcheeId = 1,
+                            MatcherId = 2
                         },
                         new
                         {
                             MatchId = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 18, 22, 25, 0, 703, DateTimeKind.Local).AddTicks(9499),
+                            DateMatched = new DateTime(2023, 1, 19, 17, 25, 54, 236, DateTimeKind.Local).AddTicks(5627),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatcheeID = 2,
-                            MatcherID = 1
+                            MatcheeId = 2,
+                            MatcherId = 1
                         });
                 });
 
@@ -155,8 +155,8 @@ namespace DatingApp.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<string>("Age")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AgePreference")
                         .HasColumnType("nvarchar(max)");
@@ -202,22 +202,34 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             UserId = 1,
-                            Age = 0,
-                            ContactNum = 0,
+                            Age = "19",
+                            AgePreference = ">18",
+                            ContactNum = 91234567,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 18, 22, 25, 0, 701, DateTimeKind.Local).AddTicks(5162),
-                            DateUpdated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(4807),
+                            DateCreated = new DateTime(2023, 1, 19, 17, 25, 54, 234, DateTimeKind.Local).AddTicks(4768),
+                            DateUpdated = new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(3332),
+                            Email = "yifeng@yahoo.com",
+                            Gender = "Male",
+                            GenderPreference = "Any",
+                            Location = "Bedok",
+                            Pronouns = "He/His",
                             UpdatedBy = "System",
                             Username = "yifeng123"
                         },
                         new
                         {
                             UserId = 2,
-                            Age = 0,
-                            ContactNum = 0,
+                            Age = "19",
+                            AgePreference = ">18",
+                            ContactNum = 93381467,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6153),
-                            DateUpdated = new DateTime(2023, 1, 18, 22, 25, 0, 702, DateTimeKind.Local).AddTicks(6161),
+                            DateCreated = new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(4276),
+                            DateUpdated = new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(4282),
+                            Email = "jeryl@gmail.com",
+                            Gender = "Male",
+                            GenderPreference = "Any",
+                            Location = "Pasir Ris",
+                            Pronouns = "He/His",
                             UpdatedBy = "System",
                             Username = "jeryl123"
                         });

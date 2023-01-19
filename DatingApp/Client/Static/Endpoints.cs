@@ -10,7 +10,7 @@ namespace DatingApp.Client.Static
         private static readonly string Prefix = "api";
 
         public static readonly string UsersEndpoint = $"{Prefix}/Users";
-        public static readonly string MatchesEndpoint = $"{Prefix}/matches";
+        public static readonly string MatchesEndpoint = $"{Prefix}/Matches";
         
     }
 }

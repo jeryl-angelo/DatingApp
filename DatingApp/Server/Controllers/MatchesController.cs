@@ -2,152 +2,134 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DatingApp.Server.Data;
 using DatingApp.Shared.Domain;
+using DatingApp.Server.IRepository;
 
 namespace DatingApp.Server.Controllers
 {
-    public class MatchesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MatchesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        //private object unitOfWork;
 
-        public MatchesController(ApplicationDbContext context)
+        //Refractored
+        //private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
+
+        // public MatchesController(ApplicationDbContext context)
+        public MatchesController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            //Refacted
+            //_context = context;
+            _unitOfWork = unitOfWork;
         }
 
-        // GET: Matches
-        public async Task<IActionResult> Index()
+        // GET: api/Matches
+        [HttpGet]
+        //Refacted
+        //public async Task<ActionResult<IEnumerable<Match>>> GetMatches()
+        public async Task<IActionResult> GetMatches()
         {
-            return View(await _context.Matches.ToListAsync());
+            //return await _context.Matches.ToListAsync();
+            //Refacted
+            var matches = await _unitOfWork.Matches.GetAll();
+            return Ok(matches);
         }
 
-        // GET: Matches/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: api/Matches/5
+        [HttpGet("{id}")]
+        //public async Task<ActionResult<Match>> GetMatch(int id)
+        public async Task<IActionResult> GetMatch(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //var match = await _context.Matches.FindAsync(id);
+            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
 
-            var match = await _context.Matches
-                .FirstOrDefaultAsync(m => m.MatchId == id);
             if (match == null)
             {
                 return NotFound();
             }
 
-            return View(match);
+            //return match;
+            return Ok(match);
         }
 
-        // GET: Matches/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Matches/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MatchId,Matchname,Email,Age,Pronouns,Gender,GenderPreference,AgePreference,ContactNum,Location,DateCreated,DateUpdated,CreatedBy,UpdatedBy")] Match match)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(match);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(match);
-        }
-
-        // GET: Matches/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var match = await _context.Matches.FindAsync(id);
-            if (match == null)
-            {
-                return NotFound();
-            }
-            return View(match);
-        }
-
-        // POST: Matches/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MatchId,Matchname,Email,Age,Pronouns,Gender,GenderPreference,AgePreference,ContactNum,Location,DateCreated,DateUpdated,CreatedBy,UpdatedBy")] Match match)
+        // PUT: api/Matches/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutMatch(int id, Match match)
         {
             if (id != match.MatchId)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            if (ModelState.IsValid)
+            //_context.Entry(match).State = EntityState.Modified;
+            _unitOfWork.Matches.Update(match);
+
+            try
             {
-                try
-                {
-                    _context.Update(match);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MatchExists(match.MatchId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                // await _context.SaveChangesAsync();
+                await _unitOfWork.Save(HttpContext);
             }
-            return View(match);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (id != match.MatchId)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
         }
 
-        // GET: Matches/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // POST: api/Matches
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<Match>> PostMatch(Match match)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            // _context.Matches.Add(match);
+            // await _context.SaveChangesAsync();
+            await _unitOfWork.Matches.Insert(match);
+            await _unitOfWork.Save(HttpContext);
 
-            var match = await _context.Matches
-                .FirstOrDefaultAsync(m => m.MatchId == id);
+            return CreatedAtAction("GetMatch", new { id = match.MatchId }, match);
+        }
+
+        // DELETE: api/Matches/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteMatch(int id)
+        {
+            //var match = await _context.Matches.FindAsync(id);
+
+            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
             if (match == null)
             {
                 return NotFound();
             }
 
-            return View(match);
+            //_context.Matches.Remove(match);
+            //await _context.SaveChangesAsync();
+
+            await _unitOfWork.Matches.Delete(id);
+            await _unitOfWork.Save(HttpContext);
+
+            return NoContent();
         }
 
-        // POST: Matches/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        private async Task<bool> MatchExists(int id)
         {
-            var match = await _context.Matches.FindAsync(id);
-            _context.Matches.Remove(match);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MatchExists(int id)
-        {
-            return _context.Matches.Any(e => e.MatchId == id);
+            // return _context.Matches.Any(e => e.Id == id);
+            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
+            return match != null;
         }
     }
 }
