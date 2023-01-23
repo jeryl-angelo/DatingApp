@@ -43,13 +43,13 @@ else
                     <td>@user.AgePreference</td>
                     <td>@user.Location</td>
                     <td>
-                        <a href="/users/view/@user.UserId" class="btn btn-primary">
+                        <a href="/users/view/@user.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/users/edit/@user.UserId" class="btn btn-warning">
+                        <a href="/users/edit/@user.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(user.UserId))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(user.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -65,13 +65,13 @@ else
     {
         Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
     }
-    async Task Delete(int UserId)
+    async Task Delete(int userId)
     {
-        var user = Users.First(q => q.UserId == UserId);
+        var user = Users.First(q => q.Id == userId);
         var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {user.Username}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.UsersEndpoint}/{UserId}");
+            await _client.DeleteAsync($"{Endpoints.UsersEndpoint}/{userId}");
             await OnInitializedAsync();
 
         }

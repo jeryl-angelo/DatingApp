@@ -12,5 +12,4 @@
     protected async override Task OnParametersSetAsync()
     {
         user = await _client.GetFromJsonAsync<User>($"{Endpoints.UsersEndpoint}/{id}");
-    } }<h3>View</h3>
-
+    } }

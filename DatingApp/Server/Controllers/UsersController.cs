@@ -47,7 +47,7 @@ namespace DatingApp.Server.Controllers
         public async Task<IActionResult> GetUser(int id)
         {
             //var user = await _context.Users.FindAsync(id);
-            var user = await _unitOfWork.Users.Get(q => q.UserId == id);
+            var user = await _unitOfWork.Users.Get(q => q.Id == id);
 
             if (user == null)
             {
@@ -63,7 +63,7 @@ namespace DatingApp.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
         {
-            if (id != user.UserId)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -78,7 +78,7 @@ namespace DatingApp.Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (id != user.UserId)
+                if (id != user.Id)
                 {
                     return NotFound();
                 }
@@ -101,7 +101,7 @@ namespace DatingApp.Server.Controllers
             await _unitOfWork.Users.Insert(user);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5
@@ -110,7 +110,7 @@ namespace DatingApp.Server.Controllers
         {
             //var user = await _context.Users.FindAsync(id);
 
-            var user = await _unitOfWork.Users.Get(q => q.UserId == id);
+            var user = await _unitOfWork.Users.Get(q => q.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -128,7 +128,7 @@ namespace DatingApp.Server.Controllers
         private async Task<bool> UserExists(int id)
         {
             // return _context.Users.Any(e => e.Id == id);
-            var user = await _unitOfWork.Users.Get(q => q.UserId == id);
+            var user = await _unitOfWork.Users.Get(q => q.Id == id);
             return user != null;
         }
     }

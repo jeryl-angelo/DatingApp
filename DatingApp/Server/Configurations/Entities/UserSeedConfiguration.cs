@@ -15,7 +15,7 @@ namespace DatingApp.Server.Configurations.Entities
             builder.HasData(
                 new User
                 {
-                    UserId = 1,
+                    Id = 1,
                     Username = "yifeng123",
                     Email = "yifeng@yahoo.com",
                     Age = "19",
@@ -35,7 +35,7 @@ namespace DatingApp.Server.Configurations.Entities
 
                 new User
                 {
-                    UserId = 2,
+                    Id = 2,
                     Username = "jeryl123",
                     Email = "jeryl@gmail.com",
                     Age = "19",

@@ -91,7 +91,7 @@ namespace DatingApp.Server.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -109,7 +109,7 @@ namespace DatingApp.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -222,8 +222,9 @@ namespace DatingApp.Server.Migrations
                 name: "Matches",
                 columns: table => new
                 {
-                    MatchId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    MatchId = table.Column<int>(type: "int", nullable: false),
                     DateMatched = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MatcheeId = table.Column<int>(type: "int", nullable: false),
                     MatcherId = table.Column<int>(type: "int", nullable: false),
@@ -235,31 +236,31 @@ namespace DatingApp.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Matches", x => x.MatchId);
+                    table.PrimaryKey("PK_Matches", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Matches_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "Matches",
-                columns: new[] { "MatchId", "CreatedBy", "DateCreated", "DateMatched", "DateUpdated", "MatcheeId", "MatcherId", "UpdatedBy", "UserId" },
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateMatched", "DateUpdated", "MatchId", "MatcheeId", "MatcherId", "UpdatedBy", "UserId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 19, 17, 25, 54, 236, DateTimeKind.Local).AddTicks(5188), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2, null, null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 19, 17, 25, 54, 236, DateTimeKind.Local).AddTicks(5627), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, null, null }
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 23, 10, 57, 2, 208, DateTimeKind.Local).AddTicks(9684), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10, 20, null, null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 1, 23, 10, 57, 2, 208, DateTimeKind.Local).AddTicks(9975), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 20, 10, null, null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
+                columns: new[] { "Id", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
                 values: new object[,]
                 {
-                    { 1, "19", ">18", 91234567, "System", new DateTime(2023, 1, 19, 17, 25, 54, 234, DateTimeKind.Local).AddTicks(4768), new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(3332), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
-                    { 2, "19", ">18", 93381467, "System", new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(4276), new DateTime(2023, 1, 19, 17, 25, 54, 235, DateTimeKind.Local).AddTicks(4282), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
+                    { 1, "19", ">18", 91234567, "System", new DateTime(2023, 1, 23, 10, 57, 2, 206, DateTimeKind.Local).AddTicks(9520), new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8036), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
+                    { 2, "19", ">18", 93381467, "System", new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8965), new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8970), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -32,18 +32,18 @@ else
             @foreach (var match in Matches)
             {
                 <tr>
-                    <td>@match.MatchId</td>
+                    <td>@match.Id</td>
                     <td>@match.DateMatched.Date.ToString("dd MMMM yyyy")</td>
                     <td>@match.MatcheeId</td>
                     <td>@match.MatcherId</td>
                     <td>
-                        <a href="/matches/view/@match.MatchId" class="btn btn-primary">
+                        <a href="/matches/view/@match.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/matches/edit/@match.MatchId" class="btn btn-warning">
+                        <a href="/matches/edit/@match.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(match.MatchId))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(match.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
@@ -59,13 +59,13 @@ else
     {
         Matches = await _client.GetFromJsonAsync<List<Match>>($"{Endpoints.MatchesEndpoint}");
     }
-    async Task Delete(int MatchId)
+    async Task Delete(int matchId)
     {
-        var match = Matches.First(q => q.MatchId == MatchId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {match.MatchId}?");
+        var match = Matches.First(q => q.Id == matchId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {match.Id}?");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.MatchesEndpoint}/{MatchId}");
+            await _client.DeleteAsync($"{Endpoints.MatchesEndpoint}/{matchId}");
             await OnInitializedAsync();
 
         }

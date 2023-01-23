@@ -47,7 +47,7 @@ namespace DatingApp.Server.Controllers
         public async Task<IActionResult> GetMatch(int id)
         {
             //var match = await _context.Matches.FindAsync(id);
-            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
+            var match = await _unitOfWork.Matches.Get(q => q.Id == id);
 
             if (match == null)
             {
@@ -63,7 +63,7 @@ namespace DatingApp.Server.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMatch(int id, Match match)
         {
-            if (id != match.MatchId)
+            if (id != match.Id)
             {
                 return BadRequest();
             }
@@ -78,7 +78,7 @@ namespace DatingApp.Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (id != match.MatchId)
+                if (id != match.Id)
                 {
                     return NotFound();
                 }
@@ -101,7 +101,7 @@ namespace DatingApp.Server.Controllers
             await _unitOfWork.Matches.Insert(match);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetMatch", new { id = match.MatchId }, match);
+            return CreatedAtAction("GetMatch", new { id = match.Id }, match);
         }
 
         // DELETE: api/Matches/5
@@ -110,7 +110,7 @@ namespace DatingApp.Server.Controllers
         {
             //var match = await _context.Matches.FindAsync(id);
 
-            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
+            var match = await _unitOfWork.Matches.Get(q => q.Id == id);
             if (match == null)
             {
                 return NotFound();
@@ -128,7 +128,7 @@ namespace DatingApp.Server.Controllers
         private async Task<bool> MatchExists(int id)
         {
             // return _context.Matches.Any(e => e.Id == id);
-            var match = await _unitOfWork.Matches.Get(q => q.MatchId == id);
+            var match = await _unitOfWork.Matches.Get(q => q.Id == id);
             return match != null;
         }
     }

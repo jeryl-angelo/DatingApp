@@ -8,7 +8,7 @@ namespace DatingApp.Shared.Domain
 {
     public class User: BaseDomainModel
     {
-        public int UserId { get; set; }
+        
         public string Username { get; set; }
         public string Email { get; set; }
         public string Age { get; set; }

@@ -15,9 +15,10 @@ namespace DatingApp.Server.Configurations.Entities
             builder.HasData(
                new Match
                {
-                  MatchId = 1,
-                  MatcheeId = 1,
-                  MatcherId = 2,
+                  Id =1,
+                  MatchId =1,
+                  MatcheeId = 10,
+                  MatcherId = 20,
                   DateMatched = DateTime.Now
 
 
@@ -26,9 +27,10 @@ namespace DatingApp.Server.Configurations.Entities
 
                new Match
                {
-                   MatchId = 2, 
-                   MatcheeId = 2,
-                   MatcherId = 1,
+                   Id =2,
+                   MatchId=2,
+                   MatcheeId = 20,
+                   MatcherId = 10,
                    DateMatched = DateTime.Now
 
                }

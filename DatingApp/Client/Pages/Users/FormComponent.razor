@@ -1,7 +1,8 @@
-﻿<EditForm User="@user" OnValidSubmit="@OnValidSubmit">
+﻿<EditForm Model="@user" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
+
         <div class="form-group">
             <label>Username: </label>
             <div>
@@ -11,7 +12,7 @@
         </div>
 
         <div class="form-group">
-            <label>Email: </label>
+            <label>Email:</label>
             <div>
                 <InputText @bind-Value="@user.Email" class="form-control" />
                 <ValidationMessage For="@(() => user.Email)" />
@@ -19,7 +20,7 @@
         </div>
 
         <div class="form-group">
-            <label> Age: </label>
+            <label>Age:</label>
             <div>
                 <InputText @bind-Value="@user.Age" class="form-control" />
                 <ValidationMessage For="@(() => user.Age)" />
@@ -45,7 +46,7 @@
         <div class="form-group">
             <label>GenderPreference: </label>
             <div>
-                <InputText @bind-Value="@user.Gender" class="form-control" />
+                <InputText @bind-Value="@user.GenderPreference" class="form-control" />
                 <ValidationMessage For="@(() => user.GenderPreference)" />
             </div>
         </div>
@@ -53,11 +54,10 @@
         <div class="form-group">
             <label>AgePreference: </label>
             <div>
-                <InputText @bind-Value="@user.Gender" class="form-control" />
+                <InputText @bind-Value="@user.AgePreference" class="form-control" />
                 <ValidationMessage For="@(() => user.AgePreference)" />
             </div>
         </div>
-
         <div class="form-group">
             <label>Location: </label>
             <div>
@@ -66,15 +66,19 @@
             </div>
         </div>
     </fieldset>
-    @if (!Disabled)
-    {
+        @if (!Disabled)
+        {
 <button type="submit" class="btn btn-success btn-block">
     @ButtonText
 </button>}
-    <BackToList Target="users" />
+        <BackToList Target="users" />
 </EditForm>
 
-@code { [Parameter] public bool Disabled { get; set; } = false;
-            [Parameter] public User user { get; set; }
-            [Parameter] public string ButtonText { get; set; } = "Save";
-            [Parameter] public EventCallback OnValidSubmit { get; set; } }
+@code {
+
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public User user { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+     }
