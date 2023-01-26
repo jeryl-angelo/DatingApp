@@ -30,24 +30,24 @@ else
         </thead>
         <tbody>
             @foreach (var match in Matches)
-            {
-                <tr>
-                    <td>@match.Id</td>
-                    <td>@match.DateMatched.Date.ToString("dd MMMM yyyy")</td>
-                    <td>@match.MatcheeId</td>
-                    <td>@match.MatcherId</td>
-                    <td>
-                        <a href="/matches/view/@match.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-                        <a href="/matches/edit/@match.Id" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(match.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
-                    </td>
-                </tr>
+            {        
+            <tr>
+                <td>@match.Id</td>
+                <td>@match.DateMatched.Date.ToString("dd MMMM yyyy")</td>
+                <td>@match.MatcheeId</td>
+                <td>@match.MatcherId</td>
+                <td>
+                    <a href="/matches/view/@match.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/matches/edit/@match.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(match.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>}
