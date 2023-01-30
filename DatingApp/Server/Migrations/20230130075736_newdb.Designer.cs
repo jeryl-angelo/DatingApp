@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230130074427_newdb")]
+    [Migration("20230130075736_newdb")]
     partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,7 +137,7 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(1603),
+                            DateMatched = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(5733),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatchId = 1,
                             MatcheeId = 10,
@@ -147,7 +147,7 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(1967),
+                            DateMatched = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(6000),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatchId = 2,
                             MatcheeId = 20,
@@ -162,11 +162,11 @@ namespace DatingApp.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
+                    b.Property<string>("Age")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNum")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactNum")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -197,11 +197,11 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 19,
-                            ContactNum = 96417218,
+                            Age = "19",
+                            ContactNum = "96417218",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8739),
-                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8761),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(9642),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(9649),
                             Email = "2104394h@student.tp.edu.sg",
                             StaffName = "Yi Feng",
                             UpdatedBy = "System"
@@ -209,11 +209,11 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             Id = 2,
-                            Age = 19,
-                            ContactNum = 93381467,
+                            Age = "19",
+                            ContactNum = "93381467",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8770),
-                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8771),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(9653),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 57, 35, 797, DateTimeKind.Local).AddTicks(9654),
                             Email = "2104395e@student.tp.edu.sg",
                             StaffName = "Jeryl",
                             UpdatedBy = "System"
@@ -287,8 +287,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 91234567,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(201),
-                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9041),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 57, 35, 795, DateTimeKind.Local).AddTicks(5217),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 57, 35, 796, DateTimeKind.Local).AddTicks(3953),
                             Email = "yifeng@yahoo.com",
                             Gender = "Male",
                             GenderPreference = "Any",
@@ -304,8 +304,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 93381467,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9901),
-                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9906),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 57, 35, 796, DateTimeKind.Local).AddTicks(4885),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 57, 35, 796, DateTimeKind.Local).AddTicks(4890),
                             Email = "jeryl@gmail.com",
                             Gender = "Male",
                             GenderPreference = "Any",

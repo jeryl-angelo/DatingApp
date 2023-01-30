@@ -17,9 +17,9 @@ namespace DatingApp.Server.Configurations.Entities
                 {
                     Id = 1,
                     StaffName = "Yi Feng",
-                    Age = 19,
+                    Age = "19",
                     Email = "2104394h@student.tp.edu.sg",
-                    ContactNum = 96417218,
+                    ContactNum = "96417218",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
@@ -30,9 +30,9 @@ namespace DatingApp.Server.Configurations.Entities
                 {
                     Id = 2,
                     StaffName = "Jeryl",
-                    Age = 19,
+                    Age = "19",
                     Email = "2104395e@student.tp.edu.sg",
-                    ContactNum = 93381467,
+                    ContactNum = "93381467",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
