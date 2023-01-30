@@ -1,0 +1,42 @@
+﻿@page "/complaints/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Complaint</h3>
+<hr />
+<br />
+
+<EditForm Model="@complaint" OnValidSubmit="CreateComplaint">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Reason:</label>
+        <div>
+            <InputText @bind-Value="@complaint.ComplaintReason" class="form-control" />
+            <ValidationMessage For="@(() => complaint.ComplaintReason)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Status:</label>
+        <div>
+            <InputText @bind-Value="@complaint.ComplaintStatus" class="form-control" />
+            <ValidationMessage For="@(() => complaint.ComplaintStatus)" />
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Complaint
+    </button>
+    <BackToList Target="matches" />
+</EditForm>
+
+@code { Complaint complaint = new Complaint();
+
+    private async Task CreateComplaint()
+    {
+        await _client.PostAsJsonAsync(Endpoints.ComplaintsEndpoint, complaint);
+        _navManager.NavigateTo("/complaints/");
+    } }
