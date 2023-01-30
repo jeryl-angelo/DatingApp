@@ -18,7 +18,7 @@ namespace DatingApp.Server.Configurations.Entities
                   Id =1,
                   MatchId =1,
                   MatcheeId = 10,
-                  MatcherId = 20,
+                  MatcherId = 20,         
                   DateMatched = DateTime.Now
 
 
