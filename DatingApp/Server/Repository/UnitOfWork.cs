@@ -18,7 +18,7 @@ namespace DatingApp.Server.Repository
         private readonly ApplicationDbContext _context;
         private IGenericRepository<User> _users;
         private IGenericRepository<Match> _matches;
-      
+        private IGenericRepository<Staff> _staffs;
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -33,7 +33,10 @@ namespace DatingApp.Server.Repository
      
         public IGenericRepository<Match> Matches
             => _matches ??= new GenericRepository<Match>(_context);
- 
+
+        public IGenericRepository<Staff> Staffs
+            => _staffs ??= new GenericRepository<Staff>(_context);
+
         public void Dispose()
         {
             _context.Dispose();

@@ -12,6 +12,8 @@ namespace DatingApp.Server.IRepository
         Task Save(HttpContext httpContext);
         IGenericRepository<User> Users { get; }
         IGenericRepository<Match> Matches { get; }
-        
+
+        IGenericRepository<Staff> Staffs { get; }
+
     }
 }

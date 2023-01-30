@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatingApp.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230123025702_newdb")]
+    [Migration("20230130074427_newdb")]
     partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,7 +137,7 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 23, 10, 57, 2, 208, DateTimeKind.Local).AddTicks(9684),
+                            DateMatched = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(1603),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatchId = 1,
                             MatcheeId = 10,
@@ -147,7 +147,7 @@ namespace DatingApp.Server.Migrations
                         {
                             Id = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 1, 23, 10, 57, 2, 208, DateTimeKind.Local).AddTicks(9975),
+                            DateMatched = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(1967),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             MatchId = 2,
                             MatcheeId = 20,
@@ -155,18 +155,15 @@ namespace DatingApp.Server.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DatingApp.Shared.Domain.User", b =>
+            modelBuilder.Entity("DatingApp.Shared.Domain.Staff", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AgePreference")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<int>("ContactNum")
                         .HasColumnType("int");
@@ -183,23 +180,100 @@ namespace DatingApp.Server.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("StaffLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Staffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 19,
+                            ContactNum = 96417218,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8739),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8761),
+                            Email = "2104394h@student.tp.edu.sg",
+                            StaffName = "Yi Feng",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 19,
+                            ContactNum = 93381467,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8770),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 571, DateTimeKind.Local).AddTicks(8771),
+                            Email = "2104395e@student.tp.edu.sg",
+                            StaffName = "Jeryl",
+                            UpdatedBy = "System"
+                        });
+                });
+
+            modelBuilder.Entity("DatingApp.Shared.Domain.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Age")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AgePreference")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ContactNum")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenderPreference")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pronouns")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -213,8 +287,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 91234567,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 23, 10, 57, 2, 206, DateTimeKind.Local).AddTicks(9520),
-                            DateUpdated = new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8036),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(201),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9041),
                             Email = "yifeng@yahoo.com",
                             Gender = "Male",
                             GenderPreference = "Any",
@@ -230,8 +304,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 93381467,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8965),
-                            DateUpdated = new DateTime(2023, 1, 23, 10, 57, 2, 207, DateTimeKind.Local).AddTicks(8970),
+                            DateCreated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9901),
+                            DateUpdated = new DateTime(2023, 1, 30, 15, 44, 26, 569, DateTimeKind.Local).AddTicks(9906),
                             Email = "jeryl@gmail.com",
                             Gender = "Male",
                             GenderPreference = "Any",

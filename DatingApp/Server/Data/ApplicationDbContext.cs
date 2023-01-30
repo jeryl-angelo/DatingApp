@@ -22,12 +22,14 @@ namespace DatingApp.Server.Data
 
         public DbSet<Match> Matches { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new UserSeedConfiguration());
             builder.ApplyConfiguration(new MatchSeedConfiguration());
+            builder.ApplyConfiguration(new StaffSeedConfiguration());
         }
     }
 }
