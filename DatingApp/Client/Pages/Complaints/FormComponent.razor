@@ -1,0 +1,33 @@
+﻿<EditForm Model="@complaint" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+
+        <div class="form-group">
+            <label>Reason: </label>
+            <div>
+                <InputText @bind-Value="@complaint.ComplaintReason" class="form-control" />
+                <ValidationMessage For="@(() => complaint.ComplaintReason)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Status: </label>
+            <div>
+                <InputCheckbox @bind-Value="@complaint.ComplaintStatus" class="form-control" />
+                <ValidationMessage For="@(() => complaint.ComplaintStatus)" />
+            </div>
+        </div>
+
+    </fieldset>
+    @if (!Disabled)
+    {
+<button type="submit" class="btn btn-success btn-block">
+    @ButtonText
+</button>}
+    <BackToList Target="complaints" />
+</EditForm>
+
+@code { [Parameter] public bool Disabled { get; set; } = false;
+            [Parameter] public Complaint complaint { get; set; }
+            [Parameter] public string ButtonText { get; set; } = "Save";
+            [Parameter] public EventCallback OnValidSubmit { get; set; } }

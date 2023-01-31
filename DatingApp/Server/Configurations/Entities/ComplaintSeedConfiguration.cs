@@ -18,7 +18,7 @@ namespace DatingApp.Server.Configurations.Entities
                     Id = 1,
                     StaffId = 1,
                     ComplaintReason = "Bad",
-                    ComplaintStatus = "Successful",
+                    ComplaintStatus = true,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
                     CreatedBy = "System",
