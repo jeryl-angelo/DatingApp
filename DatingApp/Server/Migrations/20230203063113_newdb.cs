@@ -270,11 +270,11 @@ namespace DatingApp.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MatchId = table.Column<int>(type: "int", nullable: false),
                     DateMatched = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MatcheeId = table.Column<int>(type: "int", nullable: false),
+                    MatcheeUserId = table.Column<int>(type: "int", nullable: true),
                     MatcherId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
+                    MatcherUserId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -284,20 +284,17 @@ namespace DatingApp.Server.Migrations
                 {
                     table.PrimaryKey("PK_Matches", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Matches_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Matches_Users_MatcheeUserId",
+                        column: x => x.MatcheeUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.InsertData(
-                table: "Matches",
-                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateMatched", "DateUpdated", "MatchId", "MatcheeId", "MatcherId", "UpdatedBy", "UserId" },
-                values: new object[,]
-                {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(4205), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10, 20, null, null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(4468), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 20, 10, null, null }
+                    table.ForeignKey(
+                        name: "FK_Matches_Users_MatcherUserId",
+                        column: x => x.MatcherUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -305,8 +302,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "Id", "Age", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "StaffLocation", "StaffName", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7932), new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7938), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
-                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7941), new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7942), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
+                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5001), new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5009), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
+                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5013), new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5014), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -314,8 +311,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "Id", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
                 values: new object[,]
                 {
-                    { 1, "19", ">18", 91234567, "System", new DateTime(2023, 2, 3, 12, 51, 4, 327, DateTimeKind.Local).AddTicks(4191), new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(2623), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
-                    { 2, "19", ">18", 93381467, "System", new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(3461), new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(3465), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
+                    { 1, "19", ">18", 91234567, "System", new DateTime(2023, 2, 3, 14, 31, 12, 949, DateTimeKind.Local).AddTicks(3588), new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(2513), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
+                    { 2, "19", ">18", 93381467, "System", new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3408), new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3413), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -374,9 +371,14 @@ namespace DatingApp.Server.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Matches_UserId",
+                name: "IX_Matches_MatcheeUserId",
                 table: "Matches",
-                column: "UserId");
+                column: "MatcheeUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Matches_MatcherUserId",
+                table: "Matches",
+                column: "MatcherUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",

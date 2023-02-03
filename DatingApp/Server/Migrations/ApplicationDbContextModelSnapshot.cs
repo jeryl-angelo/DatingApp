@@ -144,48 +144,28 @@ namespace DatingApp.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MatchId")
+                    b.Property<int>("MatcheeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MatcheeId")
+                    b.Property<int?>("MatcheeUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("MatcherId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MatcherUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("MatcheeUserId");
+
+                    b.HasIndex("MatcherUserId");
 
                     b.ToTable("Matches");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(4205),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchId = 1,
-                            MatcheeId = 10,
-                            MatcherId = 20
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateMatched = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(4468),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            MatchId = 2,
-                            MatcheeId = 20,
-                            MatcherId = 10
-                        });
                 });
 
             modelBuilder.Entity("DatingApp.Shared.Domain.Staff", b =>
@@ -233,8 +213,8 @@ namespace DatingApp.Server.Migrations
                             Age = "19",
                             ContactNum = "96417218",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7932),
-                            DateUpdated = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7938),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5001),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5009),
                             Email = "2104394h@student.tp.edu.sg",
                             StaffName = "Yi Feng",
                             UpdatedBy = "System"
@@ -245,8 +225,8 @@ namespace DatingApp.Server.Migrations
                             Age = "19",
                             ContactNum = "93381467",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7941),
-                            DateUpdated = new DateTime(2023, 2, 3, 12, 51, 4, 329, DateTimeKind.Local).AddTicks(7942),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5013),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5014),
                             Email = "2104395e@student.tp.edu.sg",
                             StaffName = "Jeryl",
                             UpdatedBy = "System"
@@ -320,8 +300,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 91234567,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 12, 51, 4, 327, DateTimeKind.Local).AddTicks(4191),
-                            DateUpdated = new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(2623),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 949, DateTimeKind.Local).AddTicks(3588),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(2513),
                             Email = "yifeng@yahoo.com",
                             Gender = "Male",
                             GenderPreference = "Any",
@@ -337,8 +317,8 @@ namespace DatingApp.Server.Migrations
                             AgePreference = ">18",
                             ContactNum = 93381467,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(3461),
-                            DateUpdated = new DateTime(2023, 2, 3, 12, 51, 4, 328, DateTimeKind.Local).AddTicks(3465),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3408),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3413),
                             Email = "jeryl@gmail.com",
                             Gender = "Male",
                             GenderPreference = "Any",
@@ -600,11 +580,17 @@ namespace DatingApp.Server.Migrations
 
             modelBuilder.Entity("DatingApp.Shared.Domain.Match", b =>
                 {
-                    b.HasOne("DatingApp.Shared.Domain.User", "User")
+                    b.HasOne("DatingApp.Shared.Domain.User", "MatcheeUser")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("MatcheeUserId");
 
-                    b.Navigation("User");
+                    b.HasOne("DatingApp.Shared.Domain.User", "MatcherUser")
+                        .WithMany()
+                        .HasForeignKey("MatcherUserId");
+
+                    b.Navigation("MatcheeUser");
+
+                    b.Navigation("MatcherUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

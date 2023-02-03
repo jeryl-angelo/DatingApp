@@ -28,7 +28,6 @@ namespace DatingApp.Server.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new UserSeedConfiguration());
-            builder.ApplyConfiguration(new MatchSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
             
         }
