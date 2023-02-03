@@ -213,8 +213,8 @@ namespace DatingApp.Server.Migrations
                             Age = "19",
                             ContactNum = "96417218",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5001),
-                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5009),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1411),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1422),
                             Email = "2104394h@student.tp.edu.sg",
                             StaffName = "Yi Feng",
                             UpdatedBy = "System"
@@ -225,8 +225,8 @@ namespace DatingApp.Server.Migrations
                             Age = "19",
                             ContactNum = "93381467",
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5013),
-                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5014),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1425),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1426),
                             Email = "2104395e@student.tp.edu.sg",
                             StaffName = "Jeryl",
                             UpdatedBy = "System"
@@ -240,9 +240,8 @@ namespace DatingApp.Server.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Age")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
 
                     b.Property<string>("AgePreference")
                         .IsRequired()
@@ -296,12 +295,12 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Age = "19",
+                            Age = 19,
                             AgePreference = ">18",
                             ContactNum = 91234567,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 949, DateTimeKind.Local).AddTicks(3588),
-                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(2513),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 43, 29, 861, DateTimeKind.Local).AddTicks(8296),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(6870),
                             Email = "yifeng@yahoo.com",
                             Gender = "Male",
                             GenderPreference = "Any",
@@ -313,12 +312,12 @@ namespace DatingApp.Server.Migrations
                         new
                         {
                             Id = 2,
-                            Age = "19",
+                            Age = 19,
                             AgePreference = ">18",
                             ContactNum = 93381467,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3408),
-                            DateUpdated = new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3413),
+                            DateCreated = new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(8055),
+                            DateUpdated = new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(8059),
                             Email = "jeryl@gmail.com",
                             Gender = "Male",
                             GenderPreference = "Any",

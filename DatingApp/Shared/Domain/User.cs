@@ -16,7 +16,7 @@ namespace DatingApp.Shared.Domain
         [EmailAddress]
         public string Email { get; set; }
         [Required]
-        public string Age { get; set; }
+        public int Age { get; set; }
         [Required]
         public string Pronouns { get; set; }
         [Required]

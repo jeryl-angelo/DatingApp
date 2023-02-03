@@ -116,7 +116,7 @@ namespace DatingApp.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
                     Pronouns = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GenderPreference = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -302,8 +302,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "Id", "Age", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "StaffLocation", "StaffName", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5001), new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5009), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
-                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5013), new DateTime(2023, 2, 3, 14, 31, 12, 951, DateTimeKind.Local).AddTicks(5014), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
+                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1411), new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1422), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
+                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1425), new DateTime(2023, 2, 3, 14, 43, 29, 864, DateTimeKind.Local).AddTicks(1426), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -311,8 +311,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "Id", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
                 values: new object[,]
                 {
-                    { 1, "19", ">18", 91234567, "System", new DateTime(2023, 2, 3, 14, 31, 12, 949, DateTimeKind.Local).AddTicks(3588), new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(2513), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
-                    { 2, "19", ">18", 93381467, "System", new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3408), new DateTime(2023, 2, 3, 14, 31, 12, 950, DateTimeKind.Local).AddTicks(3413), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
+                    { 1, 19, ">18", 91234567, "System", new DateTime(2023, 2, 3, 14, 43, 29, 861, DateTimeKind.Local).AddTicks(8296), new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(6870), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
+                    { 2, 19, ">18", 93381467, "System", new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(8055), new DateTime(2023, 2, 3, 14, 43, 29, 862, DateTimeKind.Local).AddTicks(8059), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
                 });
 
             migrationBuilder.CreateIndex(

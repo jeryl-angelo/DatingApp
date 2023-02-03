@@ -22,7 +22,7 @@
         <div class="form-group">
             <label>Age:</label>
             <div>
-                <InputText @bind-Value="@user.Age" class="form-control" />
+                <InputNumber @bind-Value="@user.Age" class="form-control" />
                 <ValidationMessage For="@(() => user.Age)" />
             </div>
         </div>
