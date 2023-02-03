@@ -30,7 +30,7 @@ namespace DatingApp.Server.Data
             builder.ApplyConfiguration(new UserSeedConfiguration());
             builder.ApplyConfiguration(new MatchSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
-            builder.ApplyConfiguration(new ComplaintSeedConfiguration());
+            
         }
     }
 }

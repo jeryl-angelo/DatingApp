@@ -23,7 +23,7 @@ else
                 <th>Complaint</th>
                 <th>Reason</th>
                 <th>Status</th>
-                <th>StaffId</th>
+                <th>Staff</th>
                 <th>Actions</th>
 
             </tr>
@@ -35,7 +35,7 @@ else
                 <td>@complaint.Id</td>
                 <td>@complaint.ComplaintReason</td>
                 <td>@complaint.ComplaintStatus</td>
-                <td>@complaint.StaffId</td>
+                <td>@complaint.Staff.StaffName</td>
 
                 <td>
                     <a href="/complaints/view/@complaint.Id" class="btn btn-primary">

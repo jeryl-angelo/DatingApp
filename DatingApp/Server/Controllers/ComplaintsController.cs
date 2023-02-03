@@ -37,7 +37,7 @@ namespace DatingApp.Server.Controllers
         {
             //return await _context.Complaints.ToListAsync();
             //Refacted
-            var complaints = await _unitOfWork.Complaints.GetAll();
+            var complaints = await _unitOfWork.Complaints.GetAll(includes: q => q.Include(x=> x.Staff));
             return Ok(complaints);
         }
 
