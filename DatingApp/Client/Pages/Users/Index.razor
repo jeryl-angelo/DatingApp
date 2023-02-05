@@ -2,6 +2,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 
 <h3 class="card-title">Users</h3>
 <a href="/users/create" class="btn btn-secondary">
@@ -63,6 +65,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
     }
     async Task Delete(int userId)
@@ -75,6 +78,11 @@ else
             await OnInitializedAsync();
 
         }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+
     }
 
 }
