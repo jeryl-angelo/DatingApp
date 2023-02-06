@@ -1,0 +1,26 @@
+﻿@page "/conversation/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Conversation</h3>
+<hr />
+<br />
+
+<FormComponent ButtonText="Create Conversation" conversation="conversation" OnValidSubmit="@CreateConversation" />
+
+@code { Conversation conversation = new Conversation();
+
+    private IList<User> Users;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Users = await _client.GetFromJsonAsync<List<User>>($"{Endpoints.UsersEndpoint}");
+
+
+    }
+
+    private async Task CreateConversation()
+    {
+        await _client.PostAsJsonAsync(Endpoints.ConversationsEndpoint, conversation);
+        _navManager.NavigateTo("/conversations/");
+    } }

@@ -37,7 +37,7 @@ namespace DatingApp.Server.Controllers
         {
             //return await _context.Matches.ToListAsync();
             //Refacted
-            var matches = await _unitOfWork.Matches.GetAll(includes: q => q.Include(x => x.MatcherUser).Include(x => x.MatcheeUser));
+            var matches = await _unitOfWork.Matches.GetAll(includes: q => q.Include(x => x.Matcher).Include(x => x.Matchee));
             return Ok(matches);
         }
 

@@ -16,5 +16,7 @@ namespace DatingApp.Server.IRepository
         IGenericRepository<Staff> Staffs { get; }
         IGenericRepository<Complaint> Complaints { get; }
 
+        IGenericRepository<Conversation> Conversations { get; }
+
     }
 }

@@ -13,6 +13,10 @@ namespace DatingApp.Shared.Domain
         public int StaffId { get; set; }
         public virtual Staff Staff { get; set; }
 
+        public int ConversationId { get; set; }
+
+        public virtual Conversation Conversation { get; set; }
+
 
     }
 

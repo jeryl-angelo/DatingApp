@@ -35,8 +35,8 @@ else
                 <tr>
                     <td>@match.Id</td>
                     <td>@match.DateMatched.Date.ToString("dd MMMM yyyy")</td>
-                    <td>@match.MatcheeId</td>
-                    <td>@match.MatcherId</td>
+                    <td>@match.Matchee.Username</td>
+                    <td>@match.Matcher.Username</td>
                     <td>
                         <a href="/matches/view/@match.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>

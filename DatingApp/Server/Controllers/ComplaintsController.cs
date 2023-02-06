@@ -35,7 +35,7 @@ namespace DatingApp.Server.Controllers
         //public async Task<ActionResult<IEnumerable<Complaint>>> GetComplaints()
         public async Task<IActionResult> GetComplaints()
         {
-            
+            //return NotFound(); //Test for Global Error Handling
             //return await _context.Complaints.ToListAsync();
             //Refacted
             var complaints = await _unitOfWork.Complaints.GetAll(includes: q => q.Include(x=> x.Staff));

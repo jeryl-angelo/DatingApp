@@ -19,6 +19,7 @@
                 <ValidationMessage For="@(() => complaint.ComplaintStatus)" />
             </div>
         </div>
+
         <div class="form-group">
             <label>Staff: </label>
             <div>
@@ -28,10 +29,25 @@
                     {
                         foreach (var complaint in Staffs)
                         {
-<option value="@complaint.Id">@complaint.StaffName</option>}
+    <option value="@complaint.Id">@complaint.StaffName</option>}
 }
                 </InputSelect>
                 <ValidationMessage For="@(() => complaint.StaffId)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Conversation: </label>
+            <div>
+                <InputSelect @bind-Value="complaint.ConversationId" class="form-control">
+                    <option value="">-- Select Conversation --</option>
+                    @if (Conversations != null)
+                    {
+                        foreach (var complaint in Conversations)
+                        {
+    <option value="@complaint.Id">@complaint.Id</option>}
+}
+                </InputSelect>
+                <ValidationMessage For="@(() => complaint.ConversationId)" />
             </div>
         </div>
 
@@ -45,18 +61,19 @@
 </EditForm>
 
 @code { private IList<Staff> Staffs;
+    private IList<Conversation> Conversations;
 
-            [Parameter] public bool Disabled { get; set; } = false;
-            [Parameter] public Complaint complaint { get; set; }
-            [Parameter] public string ButtonText { get; set; } = "Save";
-            [Parameter] public EventCallback OnValidSubmit { get; set; }
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Complaint complaint { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-            protected async override Task OnInitializedAsync()
-            {
-                Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+    protected async override Task OnInitializedAsync()
+    {
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        Conversations = await _client.GetFromJsonAsync<List<Conversation>>($"{Endpoints.ConversationsEndpoint}");
 
-
-            }
+    }
 
 
 

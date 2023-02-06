@@ -20,6 +20,7 @@ namespace DatingApp.Server.Repository
         private IGenericRepository<Match> _matches;
         private IGenericRepository<Staff> _staffs;
         private IGenericRepository<Complaint> _complaints;
+        private IGenericRepository<Conversation> _conversations;
         private UserManager<ApplicationUser> _userManager;
 
         public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
@@ -38,6 +39,9 @@ namespace DatingApp.Server.Repository
             => _staffs ??= new GenericRepository<Staff>(_context);
         public IGenericRepository<Complaint> Complaints
             => _complaints ??= new GenericRepository<Complaint>(_context);
+
+        public IGenericRepository<Conversation> Conversations
+            => _conversations ??= new GenericRepository<Conversation>(_context);
 
         public void Dispose()
         {

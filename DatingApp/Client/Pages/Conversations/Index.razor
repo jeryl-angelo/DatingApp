@@ -1,0 +1,76 @@
+﻿@page "/conversations/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
+<h3 class="card-title">Conversation</h3>
+<a href="/conversation/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Conversation
+</a>
+<br />
+<br />
+
+
+@if (Conversation == null)
+{
+    <div class="alert alert-info">Loading Conversation...</div> }
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Conversation</th>
+                <th>Sender</th>
+                <th>Receiver</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var conversation in Conversation)
+            {
+                <tr>
+                    <td>@conversation.Id</td>          
+                    <td>@conversation.Sender.Username</td>
+                    <td>@conversation.Receiver.Username</td>
+                    <td>
+                        <a href="/conversations/view/@conversation.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>                 
+
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(conversation.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>}
+
+@code {
+    private List<Conversation> Conversation;
+
+    protected async override Task OnInitializedAsync()
+    {
+        _interceptor.MonitorEvent();
+        Conversation = await _client.GetFromJsonAsync<List<Conversation>>($"{Endpoints.ConversationsEndpoint}");
+    }
+    async Task Delete(int conversationId)
+    {
+        var conversation = Conversation.First(q => q.Id == conversationId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {conversation.Id}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.ConversationsEndpoint}/{conversationId}");
+            await OnInitializedAsync();
+
+        }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
+
+}

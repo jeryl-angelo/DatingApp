@@ -11,12 +11,12 @@ namespace DatingApp.Shared.Domain
         public DateTime DateMatched { get; set; }
 
 
-        public int MatcheeId { get; set; }
-        public virtual User MatcheeUser { get; set; }
+        public int? MatcheeId { get; set; }
+        public virtual User Matchee { get; set; }
 
 
-        public int MatcherId { get; set; }
-        public virtual User MatcherUser { get; set; }
+        public int? MatcherId { get; set; }
+        public virtual User Matcher { get; set; }
 
        
     }
