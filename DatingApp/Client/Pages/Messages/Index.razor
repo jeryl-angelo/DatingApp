@@ -1,0 +1,78 @@
+﻿@page "/messages/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
+<h3 class="card-title">Message</h3>
+<a href="/message/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Message
+</a>
+<br />
+<br />
+
+
+@if (Message == null)
+{
+    <div class="alert alert-info">Loading Message...</div> }
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Conversation</th>
+                <th>Message</th>
+                <th>Date Time</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in Message)
+            {
+            <tr>
+                <td>@message.Conversation.Id</td>
+                <td>@message.MessageText</td>
+                <td>@message.DateTime.Date.ToString("dd MMMM yyyy")</td>
+                <td>
+                    <a href="/messages/view/@message.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/messages/edit/@message.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(message.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>}
+
+@code {
+    private List<Message> Message;
+
+    protected async override Task OnInitializedAsync()
+    {
+        _interceptor.MonitorEvent();
+        Message = await _client.GetFromJsonAsync<List<Message>>($"{Endpoints.MessagesEndpoint}");
+    }
+    async Task Delete(int messageId)
+    {
+        var message = Message.First(q => q.Id == messageId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {message.Id}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.MessagesEndpoint}/{messageId}");
+            await OnInitializedAsync();
+
+        }
+    }
+    public void Dispose()
+    {
+        _interceptor.DisposeEvent();
+    }
+
+}

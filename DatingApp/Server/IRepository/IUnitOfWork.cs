@@ -18,5 +18,7 @@ namespace DatingApp.Server.IRepository
 
         IGenericRepository<Conversation> Conversations { get; }
 
+        IGenericRepository<Message> Messages { get; }
+
     }
 }

@@ -14,6 +14,7 @@ namespace DatingApp.Client.Static
         public static readonly string StaffsEndpoint = $"{Prefix}/staffs";
         public static readonly string ComplaintsEndpoint = $"{Prefix}/complaints";
         public static readonly string ConversationsEndpoint = $"{Prefix}/conversations";
+        public static readonly string MessagesEndpoint = $"{Prefix}/messages";
 
     }
 }

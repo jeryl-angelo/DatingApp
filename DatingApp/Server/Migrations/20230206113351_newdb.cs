@@ -334,13 +334,38 @@ namespace DatingApp.Server.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MessageText = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConversationId = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Messages_Conversations_ConversationId",
+                        column: x => x.ConversationId,
+                        principalTable: "Conversations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Staffs",
                 columns: new[] { "Id", "Age", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "StaffLocation", "StaffName", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 6, 17, 20, 47, 991, DateTimeKind.Local).AddTicks(9109), new DateTime(2023, 2, 6, 17, 20, 47, 991, DateTimeKind.Local).AddTicks(9117), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
-                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 6, 17, 20, 47, 991, DateTimeKind.Local).AddTicks(9121), new DateTime(2023, 2, 6, 17, 20, 47, 991, DateTimeKind.Local).AddTicks(9122), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
+                    { 1, "19", "96417218", "System", new DateTime(2023, 2, 6, 19, 33, 51, 268, DateTimeKind.Local).AddTicks(7112), new DateTime(2023, 2, 6, 19, 33, 51, 268, DateTimeKind.Local).AddTicks(7124), "2104394h@student.tp.edu.sg", null, "Yi Feng", "System" },
+                    { 2, "19", "93381467", "System", new DateTime(2023, 2, 6, 19, 33, 51, 268, DateTimeKind.Local).AddTicks(7131), new DateTime(2023, 2, 6, 19, 33, 51, 268, DateTimeKind.Local).AddTicks(7132), "2104395e@student.tp.edu.sg", null, "Jeryl", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -348,8 +373,8 @@ namespace DatingApp.Server.Migrations
                 columns: new[] { "Id", "Age", "AgePreference", "ContactNum", "CreatedBy", "DateCreated", "DateUpdated", "Email", "Gender", "GenderPreference", "Location", "Pronouns", "UpdatedBy", "Username" },
                 values: new object[,]
                 {
-                    { 1, 19, ">18", 91234567, "System", new DateTime(2023, 2, 6, 17, 20, 47, 989, DateTimeKind.Local).AddTicks(9421), new DateTime(2023, 2, 6, 17, 20, 47, 990, DateTimeKind.Local).AddTicks(7664), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
-                    { 2, 19, ">18", 93381467, "System", new DateTime(2023, 2, 6, 17, 20, 47, 990, DateTimeKind.Local).AddTicks(8479), new DateTime(2023, 2, 6, 17, 20, 47, 990, DateTimeKind.Local).AddTicks(8516), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
+                    { 1, 19, ">18", 91234567, "System", new DateTime(2023, 2, 6, 19, 33, 51, 265, DateTimeKind.Local).AddTicks(5351), new DateTime(2023, 2, 6, 19, 33, 51, 266, DateTimeKind.Local).AddTicks(7608), "yifeng@yahoo.com", "Male", "Any", "Bedok", "He/His", "System", "yifeng123" },
+                    { 2, 19, ">18", 93381467, "System", new DateTime(2023, 2, 6, 19, 33, 51, 266, DateTimeKind.Local).AddTicks(8958), new DateTime(2023, 2, 6, 19, 33, 51, 266, DateTimeKind.Local).AddTicks(8966), "jeryl@gmail.com", "Male", "Any", "Pasir Ris", "He/His", "System", "jeryl123" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -433,6 +458,11 @@ namespace DatingApp.Server.Migrations
                 column: "MatcherId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Messages_ConversationId",
+                table: "Messages",
+                column: "ConversationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
                 table: "PersistedGrants",
                 column: "Expiration");
@@ -475,6 +505,9 @@ namespace DatingApp.Server.Migrations
                 name: "Matches");
 
             migrationBuilder.DropTable(
+                name: "Messages");
+
+            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
@@ -484,10 +517,10 @@ namespace DatingApp.Server.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Conversations");
+                name: "Staffs");
 
             migrationBuilder.DropTable(
-                name: "Staffs");
+                name: "Conversations");
 
             migrationBuilder.DropTable(
                 name: "Users");

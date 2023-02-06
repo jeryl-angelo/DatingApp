@@ -26,6 +26,8 @@ namespace DatingApp.Server.Data
         public DbSet<Complaint> Complaints{ get; set; }
 
         public DbSet<Conversation> Conversations { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
