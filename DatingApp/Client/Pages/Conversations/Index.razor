@@ -36,10 +36,12 @@ else
                     <td>@conversation.Sender.Username</td>
                     <td>@conversation.Receiver.Username</td>
                     <td>
-                        <a href="/conversations/view/@conversation.Id" class="btn btn-primary">
+                        <a href="/messages/create/@conversation.Messages" class="btn btn-primary">
                             <span class="oi oi-book"></span>
-                        </a>                 
-
+                        </a>
+                        <a href="/complaints/create/@conversation.Complaints" class="btn btn-primary">
+                            <span class="oi oi-ban"></span>
+                        </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(conversation.Id))">
                             <span class="oi oi-delete"></span>
                         </button>

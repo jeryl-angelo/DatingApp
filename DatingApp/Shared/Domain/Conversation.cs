@@ -21,7 +21,9 @@ namespace DatingApp.Shared.Domain
         public DateTime ConversationStart { get; set; }
 
         public DateTime ConversationEnd { get; set; }
+        public virtual List<Complaint> Complaints { get; set; }
+        public virtual List<Message> Messages { get; set; }
 
-        
+
     }
 }

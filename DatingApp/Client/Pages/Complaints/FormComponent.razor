@@ -44,7 +44,7 @@
                     {
                         foreach (var complaint in Conversations)
                         {
-    <option value="@complaint.Id">@complaint.Id</option>}
+    <option value="@complaint.Id">@complaint.Id ) @complaint.Sender.Username to @complaint.Receiver.Username</option>}
 }
                 </InputSelect>
                 <ValidationMessage For="@(() => complaint.ConversationId)" />
